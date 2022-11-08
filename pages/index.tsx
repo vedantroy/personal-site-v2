@@ -1,56 +1,113 @@
 import clsx from "clsx";
+import Head from "next/head";
 
-const Link = ({ children, url, italic, bold }) => (
+interface LinkProps {
+  children?: React.ReactNode;
+  href: string;
+  className?: string;
+  italic?: boolean;
+  underline?: boolean;
+  bold?: boolean;
+}
+
+const Link = (
+  { children, href, italic, bold, underline, className }: LinkProps = {
+    italic: false,
+    bold: false,
+    underline: false,
+    className: "",
+    href: "",
+  }
+) => (
   <a
-    href={url}
-    className={clsx(italic && "italic", bold && "bold", "hover:underline")}
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className={clsx(
+      italic && "italic",
+      bold && "font-bold",
+      underline && "underline",
+      "hover:underline",
+      className
+    )}
   >
     {children}
   </a>
 );
 export default function Home() {
   return (
-    <div className="m-32">
-      <div className="flex flex-row">
-        <div className="text-gray-700 mr-2">Name:</div>
-        <span className="font-bold">Vedant Roy</span>
-      </div>
-      <div className="flex flex-row">
-        <div className="text-gray-700 mr-2">Links:&nbsp;</div>
-        <div className="flex flex-row">
-          <div className="flex flex-row mr-1">
-            <Link italic url="hi">
-              Github
-            </Link>
-            <span>,</span>
-          </div>
-          <Link italic url="hi">
-            Twitter
+    <>
+      <Head>
+        <title>Vedant Roy</title>
+      </Head>
+      <div className="m-32">
+        <div className="mb-2">
+          <Link href="https://twitter.com/vroomerify?lang=en" bold>
+            Vedant Roy
           </Link>
         </div>
-      </div>
-      <div>
-        <div className="text-gray-700 mr-2 mb-2">Projects:</div>
-        <div className="flex flex-col ml-4 gap-2">
-          <div>
-            Pokemon <Link>video search</Link> using contrastive loss
+        <div className="mb-2">
+          <div className="text-gray-700 mr-2 mb-1">Projects</div>
+          <div className="flex flex-col ml-4 gap-2">
+            <div>
+              <span className="">Contrastive loss for Pokemon </span>{" "}
+              <Link href="/pokemon_video.gif" bold>
+                video search
+              </Link>
+            </div>
+            <div>
+              Diffusion model for{" "}
+              <Link
+                href="https://github.com/vedantroy/improved-ddpm-pytorch"
+                bold
+              >
+                face generation
+              </Link>
+            </div>
+            <div>
+              Websites for{" "}
+              <Link
+                href="https://twitter.com/vroomerify/status/1521806346881929216"
+                bold
+              >
+                collaborative
+              </Link>{" "}
+              <Link href="https://webhighlighter.com" bold>
+                learning
+              </Link>
+            </div>
+            <div>
+              Automatic runtime type-checking with{" "}
+              <Link href="https://github.com/vedantroy/typecheck.macro" bold>
+                a compiler
+              </Link>
+            </div>
+            <div>
+              Several{" "}
+              <Link
+                href="https://github.com/babel/babel/pulls?q=is%3Apr+author%3Avedantroy"
+                bold
+              >
+                open-source PRs
+              </Link>
+            </div>
+            <div>
+              250K+ and 3K+ downloaded{" "}
+              <span className="font-bold">mobile apps</span>
+            </div>
           </div>
-          <div>
-            <Link>Face generation</Link> with diffusion models
-          </div>
-          <div>Collaborative learning (Chimu, Web Highlighter)</div>
-          <div>
-            A compiler for generating Typescript type validation functions
-          </div>
-          <div>A bunch of open-source PRs</div>
-          <div>
-            (High-school) Assorted mobile apps (250K+ downloads, 3K+, 1K+)
+        </div>
+        <div>
+          <div className="text-gray-700 mr-2 mb-1">Posts</div>
+          <div className="flex flex-col ml-4 gap-2">
+            <div>
+              <Link href="/posts/diffusion" italic>
+                Diffusion model math for beginners (WIP)
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-      <div className="flex flex-row">
-        <div className="text-gray-700 mr-2">Posts:</div>
-      </div>
-    </div>
+    </>
   );
 }
