@@ -51,7 +51,7 @@ export default function Home() {
           <div className="flex flex-col ml-4 gap-2">
             <div>
               <span className="">Contrastive loss for Pokemon </span>{" "}
-              <Link href="/pokemon_video.gif" bold>
+              <Link href="/pokemon.mp4" bold>
                 video search
               </Link>
             </div>
