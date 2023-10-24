@@ -50,6 +50,12 @@ export default function Home() {
           <div className="text-gray-700 mr-2 mb-1">Projects</div>
           <div className="flex flex-col ml-4 gap-2">
             <div>
+              <span className="">AI</span>{" "}
+              <Link href="/Hydrogen.mp4" bold>
+                Video Editor
+              </Link>
+            </div>
+            <div>
               <span className="">Contrastive loss for Pokemon </span>{" "}
               <Link href="/pokemon.mp4" bold>
                 video search
